@@ -17,5 +17,5 @@
             "email": "146722096+HassanKerdash-Qutell@users.noreply.github.com"
         }
     ],
-    "require": {}
+      "minimum-stability": "stable"
 }
