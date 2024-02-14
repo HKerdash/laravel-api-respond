@@ -1,0 +1,21 @@
+{
+    "name": "hassankerdash/laravel-api-respond",
+    "description": "Return readable API responses",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "files": [
+            "src/Helpers/Helper.php"
+        ],
+        "psr-4": {
+            "HassanKerdash\\LaravelApiRespond\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hassan Kerdash",
+            "email": "146722096+HassanKerdash-Qutell@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
