@@ -26,7 +26,7 @@ class Respond
         $this->messages_key = $messages_key;
     }
 
-    public function response(string|array $data, string|array $message = null, $code = 200, $status = true): JsonResponse
+    public function response(string|array|null $data, string|array $message = null, $code = 200, $status = true): JsonResponse
     {
         if ($this->enable_status_key) {
             $response_data = collect([$this->status_key => true]);
@@ -42,7 +42,8 @@ class Respond
             }
         }
 
-        $response_data->put($this->data_key, $data);
+        if (!is_null($data))
+            $response_data->put($this->data_key, $data);
 
         return response()->json(data: $response_data, status: $code);
     }
