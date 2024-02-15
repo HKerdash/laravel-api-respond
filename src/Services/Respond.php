@@ -29,7 +29,7 @@ class Respond
     public function response(string|array|null $data, string|array $message = null, $code = 200, $status = true): JsonResponse
     {
         if ($this->enable_status_key) {
-            $response_data = collect([$this->status_key => true]);
+            $response_data = collect([$this->status_key => $status]);
         } else {
             $response_data = collect([]);
         }
@@ -50,111 +50,111 @@ class Respond
 
     public function success(string|array $data, string|array $message = null, $code = 200, $status = true): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function error(string|array $message, string|array $data = null, $code = 400, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function ok(string|array $data, string|array $message = null, $code = 200, $status = true): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function created(string|array $data, string|array $message = null, $code = 201, $status = true): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function accepted(string|array $data, string|array $message = null, $code = 202, $status = true): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function noContent(string|array $message = null, $code = 204, $status = true): JsonResponse
     {
-        return $this->response([], $message, $code);
+        return $this->response([], $message, $code, $status);
     }
 
     public function badRequest(string|array $message, string|array $data = null, $code = 400, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function notFound(string|array $message, string|array $data = null, $code = 404, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function methodNotAllowed(string|array $message, string|array $data = null, $code = 405, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function conflict(string|array $message, string|array $data = null, $code = 409, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function internalServerError(string|array $message, string|array $data = null, $code = 500, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function unauthorized(string|array $message, string|array $data = null, $code = 401, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function forbidden(string|array $message, string|array $data = null, $code = 403, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function gone(string|array $message, string|array $data = null, $code = 410, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function lengthRequired(string|array $message, string|array $data = null, $code = 411, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function preconditionFailed(string|array $message, string|array $data = null, $code = 412, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function unprocessableEntity(string|array $message, string|array $data = null, $code = 422, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function tooManyRequests(string|array $message, string|array $data = null, $code = 429, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function notImplemented(string|array $message, string|array $data = null, $code = 501, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function serviceUnavailable(string|array $message, string|array $data = null, $code = 503, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function badGateway(string|array $message, string|array $data = null, $code = 502, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 
     public function gatewayTimeout(string|array $message, string|array $data = null, $code = 504, $status = false): JsonResponse
     {
-        return $this->response($data, $message, $code);
+        return $this->response($data, $message, $code, $status);
     }
 }
