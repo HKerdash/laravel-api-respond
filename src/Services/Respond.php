@@ -26,7 +26,7 @@ class Respond
         $this->messages_key = $messages_key;
     }
 
-    public function response(string|array|object|null $data=null, string|array|object|null $message = null, $code = 200, bool $status = true, string|array|object|null $response = null): JsonResponse
+    public function response(string|array|object|null $data = null, string|array|object|null $message = null, $code = 200, bool $status = true, string|array|object|null $response = null): JsonResponse
     {
         if(!is_null($response))
             return response()->json(data: $response, status: $code);
@@ -51,7 +51,7 @@ class Respond
         return response()->json(data: $response_data, status: $code);
     }
 
-    public function success(string|array|object|null $data=null, string|array|object|null $message = null, $code = 200, bool $status = true, string|array|object|null $response = null): JsonResponse
+    public function success(string|array|object|null $data = null, string|array|object|null $message = null, $code = 200, bool $status = true, string|array|object|null $response = null): JsonResponse
     {
         return $this->response($data, $message, $code, $status, $response);
     }
