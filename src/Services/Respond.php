@@ -26,8 +26,11 @@ class Respond
         $this->messages_key = $messages_key;
     }
 
-    public function response(string|array|object|null $data=null, string|array $message = null, $code = 200, $status = true): JsonResponse
+    public function response(string|array|object|null $data=null, string|array|object|null $message = null, $code = 200, bool $status = true, string|array|object|null $response = null): JsonResponse
     {
+        if(!is_null($response))
+            return response()->json(data: $response, status: $code);
+
         if ($this->enable_status_key) {
             $response_data = collect([$this->status_key => $status]);
         } else {
@@ -48,113 +51,113 @@ class Respond
         return response()->json(data: $response_data, status: $code);
     }
 
-    public function success(string|array|object|null $data=null, string|array $message = null, $code = 200, $status = true): JsonResponse
+    public function success(string|array|object|null $data=null, string|array|object|null $message = null, $code = 200, bool $status = true, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function error(string|array $message, string|array|object|null $data = null, $code = 400, $status = false): JsonResponse
+    public function error(string|array|object|null $message, string|array|object|null $data = null, $code = 400, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function ok(string|array $message = null, string|array|object|null $data = null, $code = 200, $status = true): JsonResponse
+    public function ok(string|array|object|null $message = null, string|array|object|null $data = null, $code = 200, bool $status = true, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function created(string|array|object|null $data = null, string|array $message = null, $code = 201, $status = true): JsonResponse
+    public function created(string|array|object|null $data = null, string|array|object|null $message = null, $code = 201, bool $status = true, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function accepted(string|array $message = null, string|array|object|null $data = null, $code = 202, $status = true): JsonResponse
+    public function accepted(string|array|object|null $message = null, string|array|object|null $data = null, $code = 202, bool $status = true, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function noContent(string|array $message = null, $code = 204, $status = true): JsonResponse
+    public function noContent(string|array|object|null $message = null, $code = 204, bool $status = true, string|array|object|null $response = null): JsonResponse
     {
         return $this->response([], $message, $code, $status);
     }
 
-    public function badRequest(string|array $message, string|array|object|null $data = null, $code = 400, $status = false): JsonResponse
+    public function badRequest(string|array|object|null $message, string|array|object|null $data = null, $code = 400, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function notFound(string|array $message, string|array|object|null $data = null, $code = 404, $status = false): JsonResponse
+    public function notFound(string|array|object|null $message, string|array|object|null $data = null, $code = 404, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function methodNotAllowed(string|array $message, string|array|object|null $data = null, $code = 405, $status = false): JsonResponse
+    public function methodNotAllowed(string|array|object|null $message, string|array|object|null $data = null, $code = 405, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function conflict(string|array $message, string|array|object|null $data = null, $code = 409, $status = false): JsonResponse
+    public function conflict(string|array|object|null $message, string|array|object|null $data = null, $code = 409, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function internalServerError(string|array $message, string|array|object|null $data = null, $code = 500, $status = false): JsonResponse
+    public function internalServerError(string|array|object|null $message, string|array|object|null $data = null, $code = 500, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function unauthorized(string|array $message, string|array|object|null $data = null, $code = 401, $status = false): JsonResponse
+    public function unauthorized(string|array|object|null $message, string|array|object|null $data = null, $code = 401, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function forbidden(string|array $message, string|array|object|null $data = null, $code = 403, $status = false): JsonResponse
+    public function forbidden(string|array|object|null $message, string|array|object|null $data = null, $code = 403, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function gone(string|array $message, string|array|object|null $data = null, $code = 410, $status = false): JsonResponse
+    public function gone(string|array|object|null $message, string|array|object|null $data = null, $code = 410, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function lengthRequired(string|array $message, string|array|object|null $data = null, $code = 411, $status = false): JsonResponse
+    public function lengthRequired(string|array|object|null $message, string|array|object|null $data = null, $code = 411, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function preconditionFailed(string|array $message, string|array|object|null $data = null, $code = 412, $status = false): JsonResponse
+    public function preconditionFailed(string|array|object|null $message, string|array|object|null $data = null, $code = 412, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function unprocessableEntity(string|array $message, string|array|object|null $data = null, $code = 422, $status = false): JsonResponse
+    public function unprocessableEntity(string|array|object|null $message, string|array|object|null $data = null, $code = 422, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function tooManyRequests(string|array $message, string|array|object|null $data = null, $code = 429, $status = false): JsonResponse
+    public function tooManyRequests(string|array|object|null $message, string|array|object|null $data = null, $code = 429, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function notImplemented(string|array $message, string|array|object|null $data = null, $code = 501, $status = false): JsonResponse
+    public function notImplemented(string|array|object|null $message, string|array|object|null $data = null, $code = 501, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function serviceUnavailable(string|array $message, string|array|object|null $data = null, $code = 503, $status = false): JsonResponse
+    public function serviceUnavailable(string|array|object|null $message, string|array|object|null $data = null, $code = 503, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function badGateway(string|array $message, string|array|object|null $data = null, $code = 502, $status = false): JsonResponse
+    public function badGateway(string|array|object|null $message, string|array|object|null $data = null, $code = 502, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 
-    public function gatewayTimeout(string|array $message, string|array|object|null $data = null, $code = 504, $status = false): JsonResponse
+    public function gatewayTimeout(string|array|object|null $message, string|array|object|null $data = null, $code = 504, bool $status = false, string|array|object|null $response = null): JsonResponse
     {
-        return $this->response($data, $message, $code, $status);
+        return $this->response($data, $message, $code, $status, $response);
     }
 }
