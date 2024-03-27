@@ -65,7 +65,7 @@ class Respond
             $response_data->put($this->data_key, $data);
         }
 
-        return response()->json(['data' => $response_data], $code);
+        return response()->json($response_data, $code);
     }
 
 
