@@ -43,7 +43,7 @@ class Respond
             }
         }
 
-        if ($data->resource instanceof LengthAwarePaginator) {
+        if (isset($data->resource) && $data->resource instanceof LengthAwarePaginator) {
             $response_data->put($this->data_key, $data->items());
             $pagination = [
                 'total' => $data->total(),
